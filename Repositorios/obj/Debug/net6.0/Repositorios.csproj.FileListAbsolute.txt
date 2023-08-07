@@ -1,0 +1,15 @@
+C:\VisualStudio Projects\PizzariaApi\Repositorios\bin\Debug\net6.0\Repositorios.deps.json
+C:\VisualStudio Projects\PizzariaApi\Repositorios\bin\Debug\net6.0\Repositorios.dll
+C:\VisualStudio Projects\PizzariaApi\Repositorios\bin\Debug\net6.0\Repositorios.pdb
+C:\VisualStudio Projects\PizzariaApi\Repositorios\bin\Debug\net6.0\Entidades.dll
+C:\VisualStudio Projects\PizzariaApi\Repositorios\bin\Debug\net6.0\Entidades.pdb
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.csproj.AssemblyReference.cache
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.GeneratedMSBuildEditorConfig.editorconfig
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.AssemblyInfoInputs.cache
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.AssemblyInfo.cs
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.csproj.CoreCompileInputs.cache
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.csproj.CopyComplete
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.dll
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\refint\Repositorios.dll
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\Repositorios.pdb
+C:\VisualStudio Projects\PizzariaApi\Repositorios\obj\Debug\net6.0\ref\Repositorios.dll
