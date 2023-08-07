@@ -13,5 +13,6 @@ namespace Services.Interfaces
         List<Pedido> ListaTodosOsPedidos();
         public Pedido ListaPedidoPelaId(int id);
         bool ExcluirPedido(int id);
+        Pedido AtualizarPedido(Pedido pedido, int id);
     }
 }

@@ -17,7 +17,7 @@ namespace Repositorios
             instrucaoSql.Connection = conexao;
 
             instrucaoSql.CommandText =
-                $"INSERT INTO pedidos(id, origemDoPedido, itensDoPedidoId, clienteId) VALUES({pedido.Id}, '{(int)pedido.OrigemDoPedidoEnum}', '{pedido.ItensDoPedidoId}', '{pedido.ClienteId}' )";
+                $"INSERT INTO pedidos(id, origemDoPedido, itensDoPedidoId, clienteId) VALUES({pedido.Id}, '{(int)pedido.OrigemDoPedido}', '{pedido.ItensDoPedidoId}', '{pedido.ClienteId}' )";
 
             instrucaoSql.ExecuteNonQuery();
             return pedido;
@@ -43,7 +43,7 @@ namespace Repositorios
 
             var resultado = conexao.Query<Pedido>(instrucaoSql).FirstOrDefault();
 
-            if(resultado != null)
+            if (resultado != null)
             {
                 return resultado;
             }
@@ -67,6 +67,26 @@ namespace Repositorios
                 return true;
             }
             return false;
+        }
+
+        public Pedido AtualizarPedido(Pedido pedidoRequest, int id)
+        {
+            var pedidoNoBD = ListaPedidoPelaId(id);
+            if (pedidoNoBD == null)
+            {
+                return null;
+            }
+            using var conexao = new MySqlConnection(Utils.CONNECTION_STRING);
+            conexao.Open();
+
+            using var instrucaoSql = new MySqlCommand();
+            instrucaoSql.Connection = conexao;
+
+            instrucaoSql.CommandText = 
+                $"UPDATE `pedidos` SET `id` = {pedidoRequest.Id}, `origemDoPedido` = '{(int)pedidoRequest.OrigemDoPedido}', `itensDoPedidoId` = '{pedidoRequest.ItensDoPedidoId}', `clienteId` = '{pedidoRequest.ClienteId}' WHERE `id` = {id}";
+
+            instrucaoSql.ExecuteNonQuery();
+            return pedidoRequest;
         }
     }
 }

@@ -30,7 +30,7 @@ namespace Services
                 return PEDIDO_NULO;
             }
 
-            if (ValidarOrigemPedido(pedido.OrigemDoPedidoEnum) == false)
+            if (ValidarOrigemPedido(pedido.OrigemDoPedido) == false)
             {
                 return ORIGEM_INVALIDA;
             }
@@ -65,5 +65,12 @@ namespace Services
             var pedidoExcluido = _pedidoRepositorio.ExcluirPedido(id);
             return pedidoExcluido;
         }
+
+        public Pedido AtualizarPedido(Pedido pedido, int id)
+        {
+            var pedidoAtualizado = _pedidoRepositorio.AtualizarPedido(pedido, id);
+            return pedidoAtualizado;
+        }
+
     }
 }

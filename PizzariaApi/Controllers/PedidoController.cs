@@ -48,7 +48,16 @@ namespace PizzariaApi.Controllers
         public IActionResult ExcluirPedido(int id)
         {
             var pedidoExcluido = _pedidoService.ExcluirPedido(id);
-            IActionResult resultado = pedidoExcluido == false ? NotFound(NAO_ENCONTRADO) : Ok(pedidoExcluido);
+            IActionResult resultado = pedidoExcluido == false ? NotFound(NAO_ENCONTRADO) : Ok(PEDIDO_EXCLUIDO);
+            return resultado;
+        }
+
+        [HttpPut("AtualizaPedido/{id}")]
+        public IActionResult AtualizarPedido(Pedido pedido, int id)
+        {
+            var pedidoAtudalizado = _pedidoService.AtualizarPedido(pedido, id);
+
+            IActionResult resultado = pedidoAtudalizado != null ? Ok(PEDIDO_ATUALIZADO) : NotFound(NAO_ENCONTRADO);
             return resultado;
         }
     }

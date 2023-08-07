@@ -11,7 +11,7 @@ namespace Entidades
         public int Id { get; set; }
 
 
-        public  OrigemDoPedidoEnum OrigemDoPedidoEnum{ get; set; }
+        public  OrigemDoPedidoEnum OrigemDoPedido{ get; set; }
 
         public int ItensDoPedidoId { get; set; }
 
