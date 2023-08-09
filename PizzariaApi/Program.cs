@@ -29,6 +29,9 @@ builder.Services.AddScoped<IEnderecoClienteRepositorio, EnderecoClienteRepositor
 builder.Services.AddScoped<ICategoriaService, CategoriaService>();
 builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
 
+//Injecao da Entidade Produto
+builder.Services.AddScoped<IProdutoService, ProdutoService>();
+builder.Services.AddScoped<IProdutoRepositorio, ProdutoRepositorio>();
 
 
 
