@@ -10,6 +10,7 @@ namespace Entidades
     {
         public int Id { get; set; }
         public double Preco { get; set;}
+        public string Descricao { get; set;}
 
 
         public int CategoriaId { get; set;}

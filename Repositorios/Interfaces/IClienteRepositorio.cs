@@ -18,6 +18,5 @@ namespace Repositorios.Interfaces
         bool ExcluiClientePelaId(int id);
 
         Cliente AtualizaCliente(Cliente cliente, int id);
-
     }
 }

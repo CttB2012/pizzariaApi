@@ -36,7 +36,7 @@ namespace PizzariaApi.Controllers
             return Ok(listaDeClientes);
         }
 
-        [HttpGet("ListaClientePelaId")]
+        [HttpGet("ListaClientePelaId/{id}")]
         public IActionResult ListaClientePorId(int id)
         {
             var clientePorId = _clienteService.ListaClientePorId(id);
@@ -52,7 +52,7 @@ namespace PizzariaApi.Controllers
 
             IActionResult resultado = usuarioParaExcluir == false ?  NotFound(NAO_ENCONTRADO) : Ok(CLIENTE_EXCLUIDO);
 
-            return Ok(resultado);
+            return resultado;
         }
 
         [HttpPut("AtualizaCliente/{id}")]

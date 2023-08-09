@@ -17,7 +17,7 @@ namespace Repositorios
             instrucaoSql.Connection = conexao;
 
             instrucaoSql.CommandText =
-                $"INSERT INTO pedidos(id, origemDoPedido, itensDoPedidoId, clienteId) VALUES({pedido.Id}, '{(int)pedido.OrigemDoPedido}', '{pedido.ItensDoPedidoId}', '{pedido.ClienteId}' )";
+                $"INSERT INTO pedidos(id, origemDoPedido, itensDoPedido, clienteId) VALUES({pedido.Id}, '{(int)pedido.OrigemDoPedido}', '{(List<ItensDoPedido>)pedido.ItensDoPedido}', '{pedido.ClienteId}' )";
 
             instrucaoSql.ExecuteNonQuery();
             return pedido;
@@ -83,7 +83,7 @@ namespace Repositorios
             instrucaoSql.Connection = conexao;
 
             instrucaoSql.CommandText = 
-                $"UPDATE `pedidos` SET `id` = {pedidoRequest.Id}, `origemDoPedido` = '{(int)pedidoRequest.OrigemDoPedido}', `itensDoPedidoId` = '{pedidoRequest.ItensDoPedidoId}', `clienteId` = '{pedidoRequest.ClienteId}' WHERE `id` = {id}";
+                $"UPDATE `pedidos` SET `id` = {pedidoRequest.Id}, `origemDoPedido` = '{(int)pedidoRequest.OrigemDoPedido}', `itensDoPedido` = '{(List<ItensDoPedido>)pedidoRequest.ItensDoPedido}', `clienteId` = '{pedidoRequest.ClienteId}' WHERE `id` = {id}";
 
             instrucaoSql.ExecuteNonQuery();
             return pedidoRequest;

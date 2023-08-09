@@ -21,6 +21,17 @@ builder.Services.AddScoped<IClienteRepositorio, ClienteRepositorio>();
 builder.Services.AddScoped<IPedidoService, PedidoService>();
 builder.Services.AddScoped<IPedidoRepositorio, PedidoRepositorio>();
 
+//Injecao da Entidade EnderecoCliente
+builder.Services.AddScoped<IEnderecoClienteService, EnderecoClienteService>();
+builder.Services.AddScoped<IEnderecoClienteRepositorio, EnderecoClienteRepositorio>();
+
+//Injecao da Entidade Categoria
+builder.Services.AddScoped<ICategoriaService, CategoriaService>();
+builder.Services.AddScoped<ICategoriaRepositorio, CategoriaRepositorio>();
+
+
+
+
 var app = builder.Build();
  
 // Configure the HTTP request pipeline.

@@ -13,7 +13,7 @@ namespace Entidades
 
         public  OrigemDoPedidoEnum OrigemDoPedido{ get; set; }
 
-        public int ItensDoPedidoId { get; set; }
+        public List<ItensDoPedido> ItensDoPedido { get; set; }
 
         public int ClienteId { get; set; }
     }
