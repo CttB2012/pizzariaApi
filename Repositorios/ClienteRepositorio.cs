@@ -1,6 +1,7 @@
 ﻿using Dapper;
 using Entidades;
 using MySql.Data.MySqlClient;
+using MySqlX.XDevAPI;
 using Repositorios.Interfaces;
 
 namespace Repositorios
@@ -16,7 +17,7 @@ namespace Repositorios
             instrucaoSql.Connection = conexao;
 
             instrucaoSql.CommandText =
-                $"INSERT INTO clientes(id, nomeCompleto) VALUES({cliente.Id}, '{cliente.NomeCompleto}')";
+                $"INSERT INTO clientes(id, nomeCompleto, dataNascimento, email, celular, cpf, enderecoId) VALUES({cliente.Id}, '{cliente.NomeCompleto}', '{cliente.DataNascimento}', '{cliente.Email}', '{cliente.Celular}', '{cliente.Cpf}', {cliente.EnderecoId})";
 
             instrucaoSql.ExecuteNonQuery();
 
@@ -84,7 +85,9 @@ namespace Repositorios
             instrucaoSql.Connection = conexao;
 
             instrucaoSql.CommandText =
-                $"UPDATE `clientes` SET `id` = {clienteNovo.Id}, `nomeCompleto` = '{clienteNovo.NomeCompleto}' WHERE `id` = {id}";
+                $"UPDATE `clientes` SET `id` = {clienteNovo.Id}, `nomeCompleto` = '{clienteNovo.NomeCompleto}', `dataNascimento`= '{clienteNovo.DataNascimento}', " +
+                                    $"`email` = '{clienteNovo.Email}', `celular` = '{clienteNovo.Celular}', " +
+                                    $"`cpf` = '{clienteNovo.Cpf}', `enderecoId` = '{clienteNovo.EnderecoId}'  WHERE `id` = {id}";
 
             instrucaoSql.ExecuteNonQuery();
             return clienteNovo;

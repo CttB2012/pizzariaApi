@@ -1,4 +1,5 @@
 ﻿using Entidades;
+using Google.Protobuf.WellKnownTypes;
 using Repositorios.Interfaces;
 using Services.Interfaces;
 using System;
@@ -12,9 +13,8 @@ namespace Services
     public class PedidoService : IPedidoService
     {
         public const string PEDIDO_CADASTRADO = "Pedido cadastrado no sistema";
-        public const string PEDIDO_NULO = "Pedido nulo. Informe um pedido para continuar";
+        public const string PEDIDO_NULO = "Informe um pedido para continuar";
         public const string ORIGEM_INVALIDA = "Origem do pedido invalida";
-
 
         private readonly IPedidoRepositorio _pedidoRepositorio;
 
@@ -25,7 +25,7 @@ namespace Services
 
         public string InserirNovoPedido(Pedido pedido)
         {
-            if (pedido == null)
+            if (pedido == null || pedido.ItensDoPedido.Count == 0)
             {
                 return PEDIDO_NULO;
             }
@@ -36,6 +36,7 @@ namespace Services
             }
             _pedidoRepositorio.InserirNovoPedido(pedido);
             return PEDIDO_CADASTRADO;
+           
         }
 
         public bool ValidarOrigemPedido(OrigemDoPedidoEnum origemDoPedido)

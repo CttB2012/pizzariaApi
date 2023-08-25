@@ -1,6 +1,5 @@
 ﻿using Entidades;
 using Microsoft.AspNetCore.Mvc;
-using Services;
 using Services.Interfaces;
 
 namespace PizzariaApi.Controllers
@@ -19,7 +18,6 @@ namespace PizzariaApi.Controllers
         {
             _clienteService = clienteService;
         }
-
 
         [HttpPost("CadastraNovoCliente")]
         public IActionResult CadastrarNovoCliente(Cliente cliente)

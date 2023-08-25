@@ -14,23 +14,23 @@ namespace Services
     public class ProdutoService : IProdutoService
     {
         public const string PRODUTO_CADASTRADO = "Produto cadastrado com sucesso";
-        public const string PRODUTO_NAO_PERMITIDO = "Para continuar, um produto deve ser informado";
+        public const string PRODUTO_NAO_PERMITIDO = "Para continuar, um produto e seu preço devem ser informados e o preço deve ser maior que zero";
 
         private readonly IProdutoRepositorio _produtoRepositorio;
 
         public ProdutoService(IProdutoRepositorio produtoRepositorio)
         {
-            _produtoRepositorio = produtoRepositorio; 
+            _produtoRepositorio = produtoRepositorio;
         }
 
         public string CadastrarNovoProduto(Produto produto)
         {
-            if (produto != null)
+            if (produto == null || produto.Preco <= 0)
             {
-                var produtoCadastrado = _produtoRepositorio.CadastrarNovoProduto(produto);
-                return PRODUTO_CADASTRADO;
+                return PRODUTO_NAO_PERMITIDO;
             }
-            return PRODUTO_NAO_PERMITIDO;
+            var produtoCadastrado = _produtoRepositorio.CadastrarNovoProduto(produto);
+            return PRODUTO_CADASTRADO;
         }
 
         public List<Produto> ListarTodosProdutos()

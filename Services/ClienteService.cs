@@ -1,12 +1,6 @@
 ﻿using Entidades;
-using Repositorios;
 using Repositorios.Interfaces;
 using Services.Interfaces;
-using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Services
 {
@@ -14,6 +8,9 @@ namespace Services
     {
         public const string CLIENTE_CADASTRADO = "Cliente cadastrado";
         public const string CLIENTE_NAO_PERMITIDO = "Cliente Nulo não permitido";
+        public const string CPF_INVALIDO = "CPF inválido. Verifique o número informado";
+        public const string MENOR_NAO_PERMITIDO = "Você deve ser maior de idade para se cadastrar";
+
 
         private readonly IClienteRepositorio _clienteRepositorio;
 
@@ -24,12 +21,20 @@ namespace Services
 
         public string CadastrarNovoCliente(Cliente cliente)
         {
-            if (cliente != null)
+            if (cliente == null)
             {
-                var clienteCadastrado = _clienteRepositorio.CadastrarNovoCliente(cliente);
-                return CLIENTE_CADASTRADO;
+                return CLIENTE_NAO_PERMITIDO;
             }
-            return CLIENTE_NAO_PERMITIDO;
+            if (UtilsService.IsCpf(cliente.Cpf) == false)
+            {
+                return CPF_INVALIDO;
+            }
+            if (UtilsService.IsMaiorDeIdade(cliente.DataNascimento) == false)
+            {
+                return MENOR_NAO_PERMITIDO;
+            }
+            _clienteRepositorio.CadastrarNovoCliente(cliente);
+            return CLIENTE_CADASTRADO;
         }
 
         public List<Cliente> ListaTodosClientes()
@@ -55,5 +60,6 @@ namespace Services
             var clienteAtualizado = _clienteRepositorio.AtualizaCliente(cliente, id);
             return clienteAtualizado;
         }
+
     }
 }
