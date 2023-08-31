@@ -17,7 +17,9 @@ namespace Repositorios
             instrucaoSql.Connection = conexao;
 
             instrucaoSql.CommandText =
-                $"INSERT INTO clientes(id, nomeCompleto, dataNascimento, email, celular, cpf, enderecoId) VALUES({cliente.Id}, '{cliente.NomeCompleto}', '{cliente.DataNascimento}', '{cliente.Email}', '{cliente.Celular}', '{cliente.Cpf}', {cliente.EnderecoId})";
+                $"INSERT INTO clientes(id, nomeCompleto, dataNascimento, email, celular, cpf, enderecoId) VALUES" +
+                              $"({cliente.Id}, '{cliente.NomeCompleto}', '{Utils.DataFormatada(cliente.DataNascimento)}', " +
+                              $"'{cliente.Email}', '{cliente.Celular}', '{cliente.Cpf}', {cliente.EnderecoId})";
 
             instrucaoSql.ExecuteNonQuery();
 

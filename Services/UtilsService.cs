@@ -1,6 +1,7 @@
 ﻿using Entidades;
 using System;
 using System.Collections.Generic;
+using System.Globalization;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -47,32 +48,17 @@ namespace Services
                 resto = 11 - resto;
             digito = digito + resto.ToString();
             return cpf.EndsWith(digito);
-        }
-        public static string DataFormatada(DateTime _date)
-        {
-            string stringData = "";
-
-            _date = DateTime.Parse("yyyy-MM-dd");
-            stringData = _date.ToString("dd-MM-yyyy");
-            
-            return stringData;
-        }
+        }        
 
         public static bool IsMaiorDeIdade(DateTime dataNascimento)
-        {
-            var dataFormatada = DataFormatada(dataNascimento);
-
-            var idade = (int) ((DateTime.Now - dataNascimento).TotalDays/365.242199);
+        {           
+            var idade = (int) ((DateTime.UtcNow - dataNascimento).TotalDays/365.242199);
             if (idade < MAIORIDADE )
             {
                 return false;
             }            
             return true;
-        }
+        }       
 
     }
 }
-
-
-//string dataFormatada = idade.ToString("yyyy-MM-dd");
-

@@ -1,6 +1,8 @@
 ﻿using Entidades;
+using Repositorios;
 using Repositorios.Interfaces;
 using Services.Interfaces;
+using System.Reflection.Metadata;
 
 namespace Services
 {
@@ -21,6 +23,13 @@ namespace Services
 
         public string CadastrarNovoCliente(Cliente cliente)
         {
+            cliente.Cpf = cliente.Cpf.Trim();
+            cliente.Cpf = cliente.Cpf.Replace(".", "").Replace("-", "");
+
+            cliente.Celular = cliente.Celular.Trim();
+            cliente.Celular = cliente.Celular.Replace("(", "").Replace(")", "").Replace("-", "");
+
+
             if (cliente == null)
             {
                 return CLIENTE_NAO_PERMITIDO;
@@ -29,7 +38,7 @@ namespace Services
             {
                 return CPF_INVALIDO;
             }
-            if (UtilsService.IsMaiorDeIdade(cliente.DataNascimento) == false)
+            if (UtilsService.IsMaiorDeIdade(cliente.DataNascimento.StringParaData()) == false)
             {
                 return MENOR_NAO_PERMITIDO;
             }
@@ -40,12 +49,27 @@ namespace Services
         public List<Cliente> ListaTodosClientes()
         {
             var listaDeClientes = _clienteRepositorio.ListaTodosClientes();
+
+            listaDeClientes.ForEach(documento => documento.Cpf = Utils.CpfFormatado(documento.Cpf));
+            listaDeClientes.ForEach(cel => cel.Celular = Utils.CelularFormatado(cel.Celular));
+
+            listaDeClientes.ForEach(clienteNascimento =>
+            {
+                clienteNascimento.DataNascimento = clienteNascimento.DataNascimento.DataFormatadaBR();
+            });
+
+
             return listaDeClientes;
         }
 
         public Cliente ListaClientePorId(int id)
         {
             var clienteEncontrado = _clienteRepositorio.ListaClientePorId(id);
+
+            clienteEncontrado.Celular = Utils.CelularFormatado(clienteEncontrado.Celular);
+            clienteEncontrado.Cpf = Utils.CpfFormatado(clienteEncontrado.Cpf);
+            clienteEncontrado.DataNascimento = clienteEncontrado.DataNascimento.DataFormatadaBR();
+
             return clienteEncontrado;
         }
 
